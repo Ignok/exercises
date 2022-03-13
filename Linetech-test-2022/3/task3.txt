@@ -1,0 +1,5 @@
+Do długotrwającej (>30s), złożonej komunikacji wykorzystałbym komunikację peer-to-peer.
+Połączenie byłoby Ethernetowe, lub przez Wi-Fi, które również w ROS pozwala
+na taką komunikację. Korzystając z tego połączenia, trudno byłoby o zakłócenia.
+Każdy komponent podłączony do tej komunikacji mógłby porozumiewać się bezpośrednio
+z drugim komponentem asynchronicznie lub synchronicznie.

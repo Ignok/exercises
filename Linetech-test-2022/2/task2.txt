@@ -1,0 +1,29 @@
+Aby obliczyć odległość między podstawą ręki robota i miejscem, w które świeci laser,
+musimy znać odległość odcinka między podstawą ręki robota, a początkiem wiązki lasera,
+oraz kąt pomiędzy tym odcinkiem, a wiązką lasera. Kiedy znamy te wartości, wystarczy,
+że skorzystamy z twierdzenia cosinusów, aby znaleźć brakujący bok naszego trójkąta,
+którym jest właśnie szukana odległość z = pierwiastek z (a^2 + b^2 – 2ab * cos(alpha)),
+gdzie a i b to kolejno odległość między podstawą ręki robota i początkiem wiązki lasera,
+oraz długość wiązki lasera, odczytana przez sensor. Alpha to kąt między a i b.
+
+Niestety, w powyższym równaniu, znamy jedynie długość wiązki lasera. Musimy znaleźć odległość podstawy ręki robota,
+a początkiem wiązki lasera, oraz kąt alpha. Na szczęście znamy również długości poszczególnych części ręki robota
+i kąty między nimi zawarte. Należy teraz znaleźć współrzędne kolejnych złączeń części robota. Aby to zrobić,
+robimy następujące czynności:
+    1.	Jako lokalny początek układu współrzędnych traktujemy współrzędne poprzedniego złączenia części ręki robota.
+        Jako pierwszy początek układu potraktujemy podstawę robota.
+    2.	Współrzędne x i y szukanego złączenia części ręki obliczamy ze wzorów:
+        a.	x = a * cos(beta);
+        b.	y = a * sin(beta),
+        gdzie a jest długością danej części robota, a beta jest kątem między odcinkiem a, a osią X.
+    3.	Przechodzimy do kolejnej części robota
+
+W punkcie 2. jeśli jako początek układu traktujemy złączenie części inne niż podstawa
+– od aktualnego kąta beta odejmujemy kąt beta z poprzedniej iteracji.
+
+Na sam koniec, aby obliczyć kąt alpha, należy skorzystać z twierdzenia cosinusów,
+aby obliczyć kąt między odcinkiem a, a odcinkiem określonym przez ostatnią część ręki robota.
+Do tego kąta należy dodać 90 stopni, jeśli założymy że laser jest sztywno włożony
+w ostatnią część ręki robota, oraz jest nachylony właśnie o 90 stopni.
+
+Tak oto obliczyliśmy potrzebne nam wartości, które można podstawić do wzoru zaproponowanego przeze mnie na początku.
